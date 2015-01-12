@@ -1,0 +1,29 @@
+﻿Der Buildvorgang wurde am 11.12.2014 16:49:41 gestartet.
+     1>Projekt "C:\labskaus\5-Work\MAST\ActisenseJava\ActisenseJava\ActisenseJava\ActisenseJava.vcxproj" auf Knoten "2", Build Ziel(e).
+     1>CustomBuild:
+         Performing Custom Build Tools
+         In order to function correctly, please ensure the following environment variables are correctly set:
+         JAVA_INCLUDE: C:\Program Files\Java\jdk1.7.0_04\include
+         JAVA_BIN: C:\Program Files\Java\jdk1.7.0_04\bin
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /IC:\_DevTools\SenseSimDeps2_Install\Dist\ActisenseCommsDLL /I"C:\Program Files\Java\jdk1.7.0_04\include" /I"C:\Program Files\Java\jdk1.7.0_04\include\win32" /Zi /nologo /W3 /WX- /sdl /Od /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /Gd /TP /errorReport:prompt ActiWrap.cpp
+         ActiWrap.cpp
+     1>c:\labskaus\5-work\mast\actisensejava\actisensejava\actisensejava\ActiWrap.h(36): warning C4290: C++-Ausnahmespezifikation ignoriert, es sei denn, es wird angezeigt, dass eine Funktion nicht __declspec(nothrow) ist
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\labskaus\5-Work\MAST\ActisenseJava\ActisenseJava\x64\Debug\ActisenseJava64.dll" /INCREMENTAL /NOLOGO /LIBPATH:C:\_DevTools\SenseSimDeps2_Install\Dist\ActisenseCommsDLL C:\_DevTools\SenseSimDeps2_Install\Dist\ActisenseCommsDLL\ActisenseComms.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\labskaus\5-Work\MAST\ActisenseJava\ActisenseJava\x64\Debug\ActisenseJava64.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\labskaus\5-Work\MAST\ActisenseJava\ActisenseJava\x64\Debug\ActisenseJava64.lib" /MACHINE:X64 /DLL x64\Debug\ActiWrap.obj
+     1>ActiWrap.obj : error LNK2019: Verweis auf nicht aufgelöstes externes Symbol "__imp_ACommsN2K_Read" in Funktion ""private: void __cdecl ActisenseWrapper::onReceive(void)" (?onReceive@ActisenseWrapper@@AEAAXXZ)".
+     1>ActiWrap.obj : error LNK2019: Verweis auf nicht aufgelöstes externes Symbol "__imp_ACommsN2K_FlushRx" in Funktion ""public: void __cdecl ActisenseWrapper::start(void)" (?start@ActisenseWrapper@@QEAAXXZ)".
+     1>ActiWrap.obj : error LNK2019: Verweis auf nicht aufgelöstes externes Symbol "__imp_ACommsN2K_SetRxCallback" in Funktion ""public: void __cdecl ActisenseWrapper::start(void)" (?start@ActisenseWrapper@@QEAAXXZ)".
+     1>ActiWrap.obj : error LNK2019: Verweis auf nicht aufgelöstes externes Symbol "__imp_ACommsCommand_SetStream" in Funktion ""public: void __cdecl ActisenseWrapper::start(void)" (?start@ActisenseWrapper@@QEAAXXZ)".
+     1>ActiWrap.obj : error LNK2019: Verweis auf nicht aufgelöstes externes Symbol "__imp_ACommsCommand_SetOperatingMode" in Funktion ""public: void __cdecl ActisenseWrapper::start(void)" (?start@ActisenseWrapper@@QEAAXXZ)".
+     1>ActiWrap.obj : error LNK2019: Verweis auf nicht aufgelöstes externes Symbol "__imp_ACommsCreate" in Funktion ""public: void __cdecl ActisenseWrapper::start(void)" (?start@ActisenseWrapper@@QEAAXXZ)".
+     1>ActiWrap.obj : error LNK2019: Verweis auf nicht aufgelöstes externes Symbol "__imp_ACommsOpen" in Funktion ""public: void __cdecl ActisenseWrapper::start(void)" (?start@ActisenseWrapper@@QEAAXXZ)".
+     1>ActiWrap.obj : error LNK2019: Verweis auf nicht aufgelöstes externes Symbol "__imp_ACommsClose" in Funktion ""public: void __cdecl ActisenseWrapper::start(void)" (?start@ActisenseWrapper@@QEAAXXZ)".
+     1>ActiWrap.obj : error LNK2019: Verweis auf nicht aufgelöstes externes Symbol "__imp_ACommsEnumerateSerialPorts" in Funktion ""public: __cdecl ActisenseWrapper::ActisenseWrapper(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int)" (??0ActisenseWrapper@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z)".
+     1>ActiWrap.obj : error LNK2019: Verweis auf nicht aufgelöstes externes Symbol "__imp_ACommsEnumerateSerialPortsGetName" in Funktion ""public: __cdecl ActisenseWrapper::ActisenseWrapper(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int)" (??0ActisenseWrapper@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z)".
+     1>C:\labskaus\5-Work\MAST\ActisenseJava\ActisenseJava\x64\Debug\ActisenseJava64.dll : fatal error LNK1120: 10 nicht aufgelöste Externe
+     1>Die Erstellung des Projekts "C:\labskaus\5-Work\MAST\ActisenseJava\ActisenseJava\ActisenseJava\ActisenseJava.vcxproj" ist abgeschlossen, Build Ziel(e) -- FEHLER.
+
+Fehler beim Buildvorgang.
+
+Verstrichene Zeit 00:00:03.94

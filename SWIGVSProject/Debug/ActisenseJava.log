@@ -1,0 +1,32 @@
+﻿Der Buildvorgang wurde am 18.12.2014 15:50:29 gestartet.
+     1>Projekt "C:\Odysseus\wrapper\actisense\SWIGVSProject\ActisenseJava.vcxproj" auf Knoten "2", Build Ziel(e).
+     1>CustomBuild:
+         Performing Custom Build Tools
+         In order to function correctly, please ensure the following environment variables are correctly set:
+         JAVA_INCLUDE: C:\Program Files\Java\jdk1.7.0_04\include
+         SWIG_BIN: C:\_DevTools\swigwin-3.0.2\
+         ActisenseCallback.java
+         ActisenseJava.java
+         ActisenseJavaJNI.java
+         ActisenseWrapper.java
+         n2kMessage.java
+         SWIGTYPE_p_signed_char.java
+         SWIGTYPE_p_sN2KMsg.java
+                 7 Datei(en) kopiert.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IC:\_DevTools\SenseSimDeps2_Install\Dist\ActisenseCommsDLL /I"C:\Program Files\Java\jdk1.7.0_04\include" /I"C:\Program Files\Java\jdk1.7.0_04\include\win32" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _WINDLL /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ActiWrap.cpp ActiWrap_wrap.cxx
+         ActiWrap_wrap.cxx
+     1>c:\odysseus\wrapper\actisense\swigvsproject\actiwrap.h(45): warning C4290: C++-Ausnahmespezifikation ignoriert, es sei denn, es wird angezeigt, dass eine Funktion nicht __declspec(nothrow) ist
+         ActiWrap.cpp
+     1>c:\odysseus\wrapper\actisense\swigvsproject\actiwrap.h(45): warning C4290: C++-Ausnahmespezifikation ignoriert, es sei denn, es wird angezeigt, dass eine Funktion nicht __declspec(nothrow) ist
+         Code wird generiert...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\lib\win\x86\ActisenseJava.dll" /INCREMENTAL /NOLOGO /LIBPATH:C:\_DevTools\SenseSimDeps2_Install\Dist\ActisenseCommsDLL C:\_DevTools\SenseSimDeps2_Install\Dist\ActisenseCommsDLL\ActisenseComms.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\lib\win\x86\ActisenseJava.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\lib\win\x86\ActisenseJava.lib" /MACHINE:X86 /DLL Debug\ActiWrap.obj
+         Debug\ActiWrap_wrap.obj
+            Bibliothek "..\lib\win\x86\ActisenseJava.lib" und Objekt "..\lib\win\x86\ActisenseJava.exp" werden erstellt.
+         ActisenseJava.vcxproj -> C:\Odysseus\wrapper\actisense\SWIGVSProject\..\lib\win\x86\ActisenseJava.dll
+     1>Die Erstellung des Projekts "C:\Odysseus\wrapper\actisense\SWIGVSProject\ActisenseJava.vcxproj" ist abgeschlossen, Build Ziel(e).
+
+Build erfolgreich.
+
+Verstrichene Zeit 00:00:02.73
