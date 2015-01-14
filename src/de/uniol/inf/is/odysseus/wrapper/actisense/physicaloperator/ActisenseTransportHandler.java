@@ -100,6 +100,8 @@ public class ActisenseTransportHandler extends AbstractPushTransportHandler
 			
 			actisense.stop();
 			actisense = null;
+			
+			cb = null;
 		}
 	}
 
