@@ -59,7 +59,10 @@ public class ActisenseTransportHandler extends AbstractPushTransportHandler
 					 	{
 							@Override public void onMessage(ByteBuffer buffer)
 							{
-								fireProcess(buffer);
+								ByteBuffer copy = ByteBuffer.allocate(buffer.capacity());
+								copy.put(buffer);
+								
+								fireProcess(copy);
 							}
 					 	};
 
