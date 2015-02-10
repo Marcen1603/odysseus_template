@@ -11,13 +11,13 @@
 #ifndef SWIG_ActisenseJava_WRAP_H_
 #define SWIG_ActisenseJava_WRAP_H_
 
-class SwigDirector_ActisenseCallback : public ActisenseCallback, public Swig::Director {
+class SwigDirector_ActisenseWrapper : public ActisenseWrapper, public Swig::Director {
 
 public:
     void swig_connect_director(JNIEnv *jenv, jobject jself, jclass jcls, bool swig_mem_own, bool weak_global);
-    SwigDirector_ActisenseCallback(JNIEnv *jenv);
-    virtual ~SwigDirector_ActisenseCallback();
-    virtual void run(n2kMessage N2Kmsg);
+    SwigDirector_ActisenseWrapper(JNIEnv *jenv, std::string comPort, int baudRate);
+    virtual ~SwigDirector_ActisenseWrapper();
+    virtual void onMessage(void *buffer, long size);
 public:
     bool swig_overrides(int n) {
       return (n < 1 ? swig_override[n] : false);

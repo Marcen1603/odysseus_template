@@ -670,29 +670,30 @@ SWIGINTERN void SWIG_JavaException(JNIEnv *jenv, int code, const char *msg) {
 
 #include "ActiWrap_wrap.h"
 
-SwigDirector_ActisenseCallback::SwigDirector_ActisenseCallback(JNIEnv *jenv) : ActisenseCallback(), Swig::Director(jenv) {
+SwigDirector_ActisenseWrapper::SwigDirector_ActisenseWrapper(JNIEnv *jenv, std::string comPort, int baudRate) : ActisenseWrapper(comPort, baudRate), Swig::Director(jenv) {
 }
 
-SwigDirector_ActisenseCallback::~SwigDirector_ActisenseCallback() {
+SwigDirector_ActisenseWrapper::~SwigDirector_ActisenseWrapper() {
   swig_disconnect_director_self("swigDirectorDisconnect");
 }
 
 
-void SwigDirector_ActisenseCallback::run(n2kMessage N2Kmsg) {
+void SwigDirector_ActisenseWrapper::onMessage(void *buffer, long size) {
   JNIEnvWrapper swigjnienv(this) ;
   JNIEnv * jenv = swigjnienv.getJNIEnv() ;
   jobject swigjobj = (jobject) NULL ;
-  jlong jN2Kmsg  ;
+  jobject jbuffer = 0 ;
   
   if (!swig_override[0]) {
-    ActisenseCallback::run(N2Kmsg);
+    ActisenseWrapper::onMessage(buffer,size);
     return;
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    jN2Kmsg = 0;
-    *((n2kMessage **)&jN2Kmsg) = &N2Kmsg; 
-    jenv->CallStaticVoidMethod(Swig::jclass_ActisenseJavaJNI, Swig::director_methids[0], swigjobj, jN2Kmsg);
+    {
+      jbuffer = (jenv)->NewDirectByteBuffer(buffer, size); 
+    }
+    jenv->CallStaticVoidMethod(Swig::jclass_ActisenseJavaJNI, Swig::director_methids[0], swigjobj, jbuffer);
     jthrowable swigerror = jenv->ExceptionOccurred();
     if (swigerror) {
       jenv->ExceptionClear();
@@ -700,19 +701,19 @@ void SwigDirector_ActisenseCallback::run(n2kMessage N2Kmsg) {
     }
     
   } else {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object in ActisenseCallback::run ");
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object in ActisenseWrapper::onMessage ");
   }
   if (swigjobj) jenv->DeleteLocalRef(swigjobj);
 }
 
-void SwigDirector_ActisenseCallback::swig_connect_director(JNIEnv *jenv, jobject jself, jclass jcls, bool swig_mem_own, bool weak_global) {
+void SwigDirector_ActisenseWrapper::swig_connect_director(JNIEnv *jenv, jobject jself, jclass jcls, bool swig_mem_own, bool weak_global) {
   static struct {
     const char *mname;
     const char *mdesc;
     jmethodID base_methid;
   } methods[] = {
     {
-      "run", "(Lde/uniol/inf/is/odysseus/wrapper/actisense/SWIG/n2kMessage;)V", NULL 
+      "onMessage", "(Ljava/nio/ByteBuffer;)V", NULL 
     }
   };
   
@@ -720,7 +721,7 @@ void SwigDirector_ActisenseCallback::swig_connect_director(JNIEnv *jenv, jobject
   
   if (swig_set_self(jenv, jself, swig_mem_own, weak_global)) {
     if (!baseclass) {
-      baseclass = jenv->FindClass("de/uniol/inf/is/odysseus/wrapper/actisense/SWIG/ActisenseCallback");
+      baseclass = jenv->FindClass("de/uniol/inf/is/odysseus/wrapper/actisense/SWIG/ActisenseWrapper");
       if (!baseclass) return;
       baseclass = (jclass) jenv->NewGlobalRef(baseclass);
     }
@@ -746,146 +747,6 @@ void SwigDirector_ActisenseCallback::swig_connect_director(JNIEnv *jenv, jobject
 extern "C" {
 #endif
 
-SWIGEXPORT jlong JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_new_1n2kMessage(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
-  jlong jresult = 0 ;
-  signed char *arg1 = (signed char *) 0 ;
-  int arg2 ;
-  n2kMessage *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(signed char **)&jarg1; 
-  arg2 = (int)jarg2; 
-  result = (n2kMessage *)new n2kMessage((signed char const *)arg1,arg2);
-  *(n2kMessage **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_n2kMessage_1getLength(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
-  n2kMessage *arg1 = (n2kMessage *) 0 ;
-  int result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(n2kMessage **)&jarg1; 
-  result = (int)(arg1)->getLength();
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jbyte JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_n2kMessage_1getData(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
-  jbyte jresult = 0 ;
-  n2kMessage *arg1 = (n2kMessage *) 0 ;
-  int arg2 ;
-  signed char result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(n2kMessage **)&jarg1; 
-  arg2 = (int)jarg2; 
-  result = (signed char)(arg1)->getData(arg2);
-  jresult = (jbyte)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_delete_1n2kMessage(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  n2kMessage *arg1 = (n2kMessage *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(n2kMessage **)&jarg1; 
-  delete arg1;
-}
-
-
-SWIGEXPORT void JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_delete_1ActisenseCallback(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  ActisenseCallback *arg1 = (ActisenseCallback *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(ActisenseCallback **)&jarg1; 
-  delete arg1;
-}
-
-
-SWIGEXPORT void JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_ActisenseCallback_1run(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  ActisenseCallback *arg1 = (ActisenseCallback *) 0 ;
-  SwigValueWrapper< n2kMessage > arg2 ;
-  n2kMessage *argp2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(ActisenseCallback **)&jarg1; 
-  argp2 = *(n2kMessage **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null n2kMessage");
-    return ;
-  }
-  arg2 = *argp2; 
-  (arg1)->run(arg2);
-}
-
-
-SWIGEXPORT void JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_ActisenseCallback_1runSwigExplicitActisenseCallback(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  ActisenseCallback *arg1 = (ActisenseCallback *) 0 ;
-  SwigValueWrapper< n2kMessage > arg2 ;
-  n2kMessage *argp2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(ActisenseCallback **)&jarg1; 
-  argp2 = *(n2kMessage **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null n2kMessage");
-    return ;
-  }
-  arg2 = *argp2; 
-  (arg1)->ActisenseCallback::run(arg2);
-}
-
-
-SWIGEXPORT jlong JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_new_1ActisenseCallback(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
-  ActisenseCallback *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (ActisenseCallback *)new SwigDirector_ActisenseCallback(jenv);
-  *(ActisenseCallback **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_ActisenseCallback_1director_1connect(JNIEnv *jenv, jclass jcls, jobject jself, jlong objarg, jboolean jswig_mem_own, jboolean jweak_global) {
-  ActisenseCallback *obj = *((ActisenseCallback **)&objarg);
-  (void)jcls;
-  SwigDirector_ActisenseCallback *director = dynamic_cast<SwigDirector_ActisenseCallback *>(obj);
-  if (director) {
-    director->swig_connect_director(jenv, jself, jenv->GetObjectClass(jself), (jswig_mem_own == JNI_TRUE), (jweak_global == JNI_TRUE));
-  }
-}
-
-
-SWIGEXPORT void JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_ActisenseCallback_1change_1ownership(JNIEnv *jenv, jclass jcls, jobject jself, jlong objarg, jboolean jtake_or_release) {
-  ActisenseCallback *obj = *((ActisenseCallback **)&objarg);
-  SwigDirector_ActisenseCallback *director = dynamic_cast<SwigDirector_ActisenseCallback *>(obj);
-  (void)jcls;
-  if (director) {
-    director->swig_java_change_ownership(jenv, jself, jtake_or_release ? true : false);
-  }
-}
-
-
 SWIGEXPORT jlong JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_new_1ActisenseWrapper(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jlong jresult = 0 ;
   std::string arg1 ;
@@ -904,7 +765,7 @@ SWIGEXPORT jlong JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_Ac
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
   arg2 = (int)jarg2; 
   try {
-    result = (ActisenseWrapper *)new ActisenseWrapper(arg1,arg2);
+    result = (ActisenseWrapper *)new SwigDirector_ActisenseWrapper(jenv,arg1,arg2);
   }
   catch(std::exception &_e) {
     {
@@ -952,28 +813,57 @@ SWIGEXPORT void JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_Act
 }
 
 
-SWIGEXPORT void JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_ActisenseWrapper_1delCallback(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT void JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_ActisenseWrapper_1onMessage(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2) {
   ActisenseWrapper *arg1 = (ActisenseWrapper *) 0 ;
+  void *arg2 = (void *) 0 ;
+  long arg3 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(ActisenseWrapper **)&jarg1; 
-  (arg1)->delCallback();
+  {
+    arg2 = jenv->GetDirectBufferAddress(jarg2); 
+    arg3 = (long)(jenv->GetDirectBufferCapacity(jarg2)); 
+  }
+  (arg1)->onMessage(arg2,arg3);
 }
 
 
-SWIGEXPORT void JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_ActisenseWrapper_1setCallback(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_ActisenseWrapper_1onMessageSwigExplicitActisenseWrapper(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2) {
   ActisenseWrapper *arg1 = (ActisenseWrapper *) 0 ;
-  ActisenseCallback *arg2 = (ActisenseCallback *) 0 ;
+  void *arg2 = (void *) 0 ;
+  long arg3 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  (void)jarg2_;
   arg1 = *(ActisenseWrapper **)&jarg1; 
-  arg2 = *(ActisenseCallback **)&jarg2; 
-  (arg1)->setCallback(arg2);
+  {
+    arg2 = jenv->GetDirectBufferAddress(jarg2); 
+    arg3 = (long)(jenv->GetDirectBufferCapacity(jarg2)); 
+  }
+  (arg1)->ActisenseWrapper::onMessage(arg2,arg3);
+}
+
+
+SWIGEXPORT void JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_ActisenseWrapper_1director_1connect(JNIEnv *jenv, jclass jcls, jobject jself, jlong objarg, jboolean jswig_mem_own, jboolean jweak_global) {
+  ActisenseWrapper *obj = *((ActisenseWrapper **)&objarg);
+  (void)jcls;
+  SwigDirector_ActisenseWrapper *director = dynamic_cast<SwigDirector_ActisenseWrapper *>(obj);
+  if (director) {
+    director->swig_connect_director(jenv, jself, jenv->GetObjectClass(jself), (jswig_mem_own == JNI_TRUE), (jweak_global == JNI_TRUE));
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_ActisenseJavaJNI_ActisenseWrapper_1change_1ownership(JNIEnv *jenv, jclass jcls, jobject jself, jlong objarg, jboolean jtake_or_release) {
+  ActisenseWrapper *obj = *((ActisenseWrapper **)&objarg);
+  SwigDirector_ActisenseWrapper *director = dynamic_cast<SwigDirector_ActisenseWrapper *>(obj);
+  (void)jcls;
+  if (director) {
+    director->swig_java_change_ownership(jenv, jself, jtake_or_release ? true : false);
+  }
 }
 
 
@@ -985,7 +875,7 @@ SWIGEXPORT void JNICALL Java_de_uniol_inf_is_odysseus_wrapper_actisense_SWIG_Act
     const char *signature;
   } methods[1] = {
     {
-      "SwigDirector_ActisenseCallback_run", "(Lde/uniol/inf/is/odysseus/wrapper/actisense/SWIG/ActisenseCallback;J)V" 
+      "SwigDirector_ActisenseWrapper_onMessage", "(Lde/uniol/inf/is/odysseus/wrapper/actisense/SWIG/ActisenseWrapper;Ljava/nio/ByteBuffer;)V" 
     }
   };
   Swig::jclass_ActisenseJavaJNI = (jclass) jenv->NewGlobalRef(jcls);

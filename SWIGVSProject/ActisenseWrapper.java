@@ -35,8 +35,24 @@ public class ActisenseWrapper {
     }
   }
 
+  protected void swigDirectorDisconnect() {
+    swigCMemOwn = false;
+    delete();
+  }
+
+  public void swigReleaseOwnership() {
+    swigCMemOwn = false;
+    ActisenseJavaJNI.ActisenseWrapper_change_ownership(this, swigCPtr, false);
+  }
+
+  public void swigTakeOwnership() {
+    swigCMemOwn = true;
+    ActisenseJavaJNI.ActisenseWrapper_change_ownership(this, swigCPtr, true);
+  }
+
   public ActisenseWrapper(String comPort, int baudRate) throws java.lang.RuntimeException {
     this(ActisenseJavaJNI.new_ActisenseWrapper(comPort, baudRate), true);
+    ActisenseJavaJNI.ActisenseWrapper_director_connect(this, swigCPtr, swigCMemOwn, true);
   }
 
   public void start() {
@@ -47,12 +63,8 @@ public class ActisenseWrapper {
     ActisenseJavaJNI.ActisenseWrapper_stop(swigCPtr, this);
   }
 
-  public void delCallback() {
-    ActisenseJavaJNI.ActisenseWrapper_delCallback(swigCPtr, this);
-  }
-
-  public void setCallback(ActisenseCallback cb) {
-    ActisenseJavaJNI.ActisenseWrapper_setCallback(swigCPtr, this, ActisenseCallback.getCPtr(cb), cb);
+  public void onMessage(java.nio.ByteBuffer buffer) {
+    if (getClass() == ActisenseWrapper.class) ActisenseJavaJNI.ActisenseWrapper_onMessage(swigCPtr, this, buffer); else ActisenseJavaJNI.ActisenseWrapper_onMessageSwigExplicitActisenseWrapper(swigCPtr, this, buffer);
   }
 
 }

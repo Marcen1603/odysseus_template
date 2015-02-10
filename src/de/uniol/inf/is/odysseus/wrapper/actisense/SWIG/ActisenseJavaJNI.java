@@ -9,25 +9,17 @@
 package de.uniol.inf.is.odysseus.wrapper.actisense.SWIG;
 
 public class ActisenseJavaJNI {
-  public final static native long new_n2kMessage(long jarg1, int jarg2);
-  public final static native int n2kMessage_getLength(long jarg1, n2kMessage jarg1_);
-  public final static native byte n2kMessage_getData(long jarg1, n2kMessage jarg1_, int jarg2);
-  public final static native void delete_n2kMessage(long jarg1);
-  public final static native void delete_ActisenseCallback(long jarg1);
-  public final static native void ActisenseCallback_run(long jarg1, ActisenseCallback jarg1_, long jarg2, n2kMessage jarg2_);
-  public final static native void ActisenseCallback_runSwigExplicitActisenseCallback(long jarg1, ActisenseCallback jarg1_, long jarg2, n2kMessage jarg2_);
-  public final static native long new_ActisenseCallback();
-  public final static native void ActisenseCallback_director_connect(ActisenseCallback obj, long cptr, boolean mem_own, boolean weak_global);
-  public final static native void ActisenseCallback_change_ownership(ActisenseCallback obj, long cptr, boolean take_or_release);
   public final static native long new_ActisenseWrapper(String jarg1, int jarg2) throws java.lang.RuntimeException;
   public final static native void delete_ActisenseWrapper(long jarg1);
   public final static native void ActisenseWrapper_start(long jarg1, ActisenseWrapper jarg1_);
   public final static native void ActisenseWrapper_stop(long jarg1, ActisenseWrapper jarg1_);
-  public final static native void ActisenseWrapper_delCallback(long jarg1, ActisenseWrapper jarg1_);
-  public final static native void ActisenseWrapper_setCallback(long jarg1, ActisenseWrapper jarg1_, long jarg2, ActisenseCallback jarg2_);
+  public final static native void ActisenseWrapper_onMessage(long jarg1, ActisenseWrapper jarg1_, java.nio.ByteBuffer jarg2);
+  public final static native void ActisenseWrapper_onMessageSwigExplicitActisenseWrapper(long jarg1, ActisenseWrapper jarg1_, java.nio.ByteBuffer jarg2);
+  public final static native void ActisenseWrapper_director_connect(ActisenseWrapper obj, long cptr, boolean mem_own, boolean weak_global);
+  public final static native void ActisenseWrapper_change_ownership(ActisenseWrapper obj, long cptr, boolean take_or_release);
 
-  public static void SwigDirector_ActisenseCallback_run(ActisenseCallback self, long N2Kmsg) {
-    self.run(new n2kMessage(N2Kmsg, false));
+  public static void SwigDirector_ActisenseWrapper_onMessage(ActisenseWrapper self, java.nio.ByteBuffer buffer) {
+    self.onMessage(buffer);
   }
 
   private final static native void swig_module_init();

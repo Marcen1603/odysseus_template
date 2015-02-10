@@ -11,10 +11,7 @@ import de.uniol.inf.is.odysseus.core.collection.OptionMap;
 import de.uniol.inf.is.odysseus.core.physicaloperator.access.protocol.IProtocolHandler;
 import de.uniol.inf.is.odysseus.core.physicaloperator.access.transport.AbstractPushTransportHandler;
 import de.uniol.inf.is.odysseus.core.physicaloperator.access.transport.ITransportHandler;
-import de.uniol.inf.is.odysseus.wrapper.actisense.SWIG.ActisenseCallback;
 import de.uniol.inf.is.odysseus.wrapper.actisense.SWIG.ActisenseWrapper;
-import de.uniol.inf.is.odysseus.wrapper.actisense.SWIG.n2kMessage;
-
 
 public class ActisenseTransportHandler extends AbstractPushTransportHandler 
 {
@@ -25,9 +22,6 @@ public class ActisenseTransportHandler extends AbstractPushTransportHandler
 	private String comPort;
 	private int baudRate;
 	private ActisenseWrapper actisense;
-	private ActisenseCallback cb;
-	
-	
 	
 	public ActisenseTransportHandler() 
 	{
@@ -61,35 +55,18 @@ public class ActisenseTransportHandler extends AbstractPushTransportHandler
 	{
 		synchronized (processLock)
 		{
-			actisense = new ActisenseWrapper(comPort, baudRate);
+			actisense = new ActisenseWrapper(comPort, baudRate)
+					 	{
+							@Override public void onMessage(ByteBuffer buffer)
+							{
+								fireProcess(buffer);
+							}
+					 	};
+
 			actisense.start();
-			cb = new ActisenseCallback()
-								 	{
-										@Override public void run(n2kMessage N2Kmsg)
-										{
-											onReceive(N2Kmsg);
-										}
-								 	};
-			actisense.setCallback(	cb);
 		}
 		
 		fireOnConnect();
-	}
-	
-	protected void onReceive(n2kMessage n2Kmsg) 
-	{
-		int len=n2Kmsg.getLength();
-		byte[] buffer = new byte[len];
-		for (int i = 0; i < buffer.length; i++) {
-			buffer[i] = n2Kmsg.getData(i);
-		}
-		
-		ByteBuffer byteBuffer = ByteBuffer.wrap(buffer);
-		//String s = javax.xml.bind.DatatypeConverter.printHexBinary(buffer);
-		
-		byteBuffer.position(byteBuffer.limit());
-		
-		fireProcess(byteBuffer);
 	}
 
 	@Override public void processInClose() throws IOException 
@@ -100,8 +77,6 @@ public class ActisenseTransportHandler extends AbstractPushTransportHandler
 			
 			actisense.stop();
 			actisense = null;
-			
-			cb = null;
 		}
 	}
 
@@ -134,7 +109,5 @@ public class ActisenseTransportHandler extends AbstractPushTransportHandler
 	public void send(byte[] message) throws IOException 
 	{
 		throw new IllegalArgumentException("Sending Not Supported");
-		// TODO Auto-generated method stub
-		
 	}
 }
