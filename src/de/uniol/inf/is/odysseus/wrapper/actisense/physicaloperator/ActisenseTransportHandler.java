@@ -17,7 +17,6 @@ public class ActisenseTransportHandler extends AbstractPushTransportHandler
 {
 	@SuppressWarnings("unused")
 	private final Logger logger = LoggerFactory.getLogger(ActisenseTransportHandler.class);
-	private final Object processLock = new Object();
 
 	private String comPort;
 	private int baudRate;
@@ -37,8 +36,7 @@ public class ActisenseTransportHandler extends AbstractPushTransportHandler
 		
 		comPort = options.get("comport");
 		baudRate = options.getInt("baudrate", 115200);
-	}
-	
+	}	
 
 	@Override
 	public ITransportHandler createInstance(IProtocolHandler<?> protocolHandler, OptionMap options) 
@@ -46,66 +44,57 @@ public class ActisenseTransportHandler extends AbstractPushTransportHandler
 		return new ActisenseTransportHandler(protocolHandler, options);
 	}
 
-
-	@Override public String getName() { return "Actisense"; }
-
-	
+	@Override public String getName() { return "Actisense"; }	
 	
 	@Override public void processInOpen() throws IOException 
 	{
-		synchronized (processLock)
-		{
-			actisense = new ActisenseWrapper(comPort, baudRate)
-					 	{
-							@Override public void onMessage(ByteBuffer buffer)
-							{
-								ByteBuffer copy = ByteBuffer.allocate(buffer.capacity());
-								copy.put(buffer);
+		actisense = new ActisenseWrapper(comPort, baudRate)
+				 	{
+						@Override public void onMessage(ByteBuffer buffer)
+						{
+							ByteBuffer copy = ByteBuffer.allocate(buffer.capacity());
+							copy.put(buffer);
 								
-								fireProcess(copy);
-							}
-					 	};
+							fireProcess(copy);
+						}
+				 	};
 
-			actisense.start();
-		}
+		actisense.start();
 		
 		fireOnConnect();
 	}
 
 	@Override public void processInClose() throws IOException 
 	{
-		synchronized (processLock)
-		{
-			fireOnDisconnect();
+		fireOnDisconnect();
 			
-			actisense.stop();
-			actisense = null;
-		}
+		actisense.stop();
+		actisense = null;
 	}
-
 		
     @Override
-    public boolean isSemanticallyEqualImpl(ITransportHandler o) {
-    	if(!(o instanceof ActisenseTransportHandler)) {
+    public boolean isSemanticallyEqualImpl(ITransportHandler o) 
+    {
+    	if(!(o instanceof ActisenseTransportHandler))
     		return false;
-    	}
+    	
     	ActisenseTransportHandler other = (ActisenseTransportHandler)o;
-    	if(!this.comPort.equals(other.comPort))
-    		return false;
+    	if (!comPort.equals(other.comPort))	return false;
+    	if (baudRate != other.baudRate)		return false;
     	
     	return true;
     }
 
 	@Override
-	public void processOutOpen() throws IOException {
-		throw new IllegalArgumentException("Operator is not a Sink");
-		
+	public void processOutOpen() throws IOException 
+	{
+		throw new IllegalArgumentException("Operator is not a Sink");		
 	}
 
 	@Override
-	public void processOutClose() throws IOException {
-		throw new IllegalArgumentException("Operator is not a Sink");
-		
+	public void processOutClose() throws IOException 
+	{
+		throw new IllegalArgumentException("Operator is not a Sink");		
 	}
 
 	@Override
