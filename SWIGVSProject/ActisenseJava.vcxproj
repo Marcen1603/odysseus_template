@@ -27,6 +27,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -38,6 +39,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -89,6 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\_DevTools\SenseSimDeps2_Install\Dist\ActisenseCommsDLL;$(JAVA_INCLUDE);$(JAVA_INCLUDE)\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -190,6 +193,7 @@ echo SWIG_BIN: %SWIG_BIN%
 echo on
 %SWIG_BIN%\swig.exe -c++ -java -package %package% "%(FullPath)"
 copy *.java "%javadir%"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(InputName)_wrap.cxx;%(Outputs)</Outputs>
     </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
