@@ -17,3 +17,4 @@ Require-Bundle: de.uniol.inf.is.odysseus.core,
 Bundle-NativeCode: lib/win/x86/ActisenseJava.dll ;  osname=win32; osname=Windows 8; osname=Windows8; osname=Win8; osname=Windows 8.1; processor=x86,
   *
 Automatic-Module-Name: de.uniol.inf.is.odysseus.wrapper.actisense
+Bundle-ActivationPolicy: lazy
