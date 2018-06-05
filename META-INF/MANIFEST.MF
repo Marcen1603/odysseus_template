@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Actisense Wrapper
+Bundle-SymbolicName: de.uniol.inf.is.odysseus.wrapper.actisense
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: de.uniol.inf.is.odysseus.wrapper.actisense.Activator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: de.uniol.inf.is.odysseus.core.collection,
+ de.uniol.inf.is.odysseus.core.physicaloperator.access.protocol,
+ de.uniol.inf.is.odysseus.core.physicaloperator.access.transport,
+ org.osgi.framework;version="1.3.0",
+ org.slf4j
+Service-Component: OSGI-INF/*
+Require-Bundle: de.uniol.inf.is.odysseus.core,
+ de.uniol.inf.is.odysseus.core.server,
+ de.uniol.inf.is.odysseus.slf4j
+Bundle-NativeCode: lib/win/x86/ActisenseJava.dll ;  osname=win32; osname=Windows 8; osname=Windows8; osname=Win8; osname=Windows 8.1; processor=x86,
+  *
+Automatic-Module-Name: de.uniol.inf.is.odysseus.wrapper.actisense
+Bundle-ActivationPolicy: lazy
