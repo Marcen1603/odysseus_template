@@ -1,0 +1,9 @@
+/.metadata/
+/.recommenders/
+/.sonarlint/
+/External Plug-in Libraries/
+*.prefs
+*.class
+bin/
+target/
+
