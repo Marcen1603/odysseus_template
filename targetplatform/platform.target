@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Odysseus Target Platform" sequenceNumber="1502128503">
+<?pde version="3.8"?><target name="Running Platform" sequenceNumber="6">
 <locations>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="com.google.guava" version="15.0.0.v201403281430"/>
-<unit id="com.google.inject" version="3.0.0.v201312141243"/>
-<unit id="javax.mail" version="1.4.0.v201005080615"/>
-<unit id="javax.servlet" version="3.1.0.v201410161800"/>
-<unit id="org.apache.httpcomponents.httpclient" version="4.3.6.v201411290715"/>
-<unit id="org.apache.httpcomponents.httpcore" version="4.3.3.v201411290715"/>
-<unit id="org.apache.lucene" version="3.5.0.v20120725-1805"/>
-<unit id="org.apache.lucene.analysis" version="3.5.0.v20120725-1805"/>
-<unit id="org.apache.lucene.core" version="3.5.0.v20120725-1805"/>
-<unit id="org.junit" version="4.12.0.v201504281640"/>
-<repository location="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/tools/orbit/downloads/drops/R20150821153341/repository/"/>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="de.uniol.inf.is.odysseus.common.feature.feature.group" version="1.0.0.1022396"/>
+<repository location="https://odysseus.informatik.uni-oldenburg.de/updatesite/origin/master/latest/"/>
 </location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.core.runtime.feature.feature.group" version="1.1.102.v20160128-1558"/>
 <unit id="org.eclipse.e4.rcp.feature.group" version="1.4.1.v20160212-1350"/>
 <unit id="org.eclipse.e4.rcp.source.feature.group" version="1.4.1.v20160212-1350"/>
@@ -55,28 +46,11 @@
 <unit id="org.eclipse.sdk.ide" version="4.5.2.M20160212-1500"/>
 <repository location="http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/eclipse.org/releases/mars/"/>
 </location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="org.eclipse.draw2d.feature.group" version="3.10.100.201606061308"/>
-<unit id="org.eclipse.gef.feature.group" version="3.11.0.201606061308"/>
-<unit id="org.eclipse.zest.feature.group" version="1.7.0.201606061308"/>
-<repository location="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/tools/gef/updates/legacy/releases"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="org.eclipse.emf.ecore.feature.group" version="2.11.2.v20160208-0816"/>
-<unit id="org.eclipse.emf.feature.group" version="2.11.2.v20160208-0841"/>
-<unit id="org.eclipse.emf.sdk.feature.group" version="2.11.2.v20160208-0841"/>
-<repository location="http://www.mirrorservice.org/sites/download.eclipse.org/eclipseMirror/modeling/emf/emf/updates/2.11.x/"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="org.eclipse.emf.mwe2.language.sdk.feature.group" version="2.9.0.v201605261103"/>
-<unit id="org.eclipse.xtext.sdk.feature.group" version="2.13.0.v20171020-0920"/>
-<repository location="http://www.mirrorservice.org/sites/download.eclipse.org/eclipseMirror/modeling/tmf/xtext/updates/composite/releases/"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="de.uniol.inf.is.odysseus.client.platform.feature.feature.jar" version "1.0.0" />
-<unit id="de.uniol.inf.is.odysseus.monolithic.feature.feature.group" version "1.0.0" />
-<unit id="de.uniol.inf.is.odysseus.server.feature.feature.group" version "1.0.0" />
-<repository location="https://odysseus.informatik.uni-oldenburg.de/updatesite/origin/development/latest/"/>
-</location>
 </locations>
+<environment>
+<os>win32</os>
+<ws>win32</ws>
+<arch>x86_64</arch>
+<nl>de_DE</nl>
+</environment>
 </target>
