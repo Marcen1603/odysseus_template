@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Running Platform" sequenceNumber="7">
+<?pde version="3.8"?><target name="Odysseus Platform" sequenceNumber="110">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.core.runtime.feature.feature.group" version="1.1.102.v20160128-1558"/>
@@ -40,19 +40,25 @@
 <unit id="org.eclipse.rcp.source.feature.group" version="4.5.2.v20160212-1500"/>
 <unit id="org.eclipse.sdk.feature.group" version="4.5.2.v20160212-1500"/>
 <unit id="org.eclipse.sdk.ide" version="4.5.2.M20160212-1500"/>
-<repository location="http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/eclipse.org/releases/mars/"/>
+<repository location="http://www.mirrorservice.org/sites/download.eclipse.org/eclipseMirror/releases/mars/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="de.uniol.inf.is.odysseus.client.platform.feature.feature.group" version="1.0.0.1022397-7I7w8fcLSkY-_wKFYaUKWZHEz09I"/>
-<unit id="de.uniol.inf.is.odysseus.core.server.feature.feature.group" version="1.0.0.1022397-3--cCmyaT524hIz-6el89R11eEoz"/>
-<unit id="de.uniol.inf.is.odysseus.server.platform.feature.feature.group" version="1.0.0.1022397-128YcLZYxw7w3126163802817"/>
-<repository location="https://odysseus.informatik.uni-oldenburg.de/updatesite/origin/master/latest/"/>
+<unit id="de.uniol.inf.is.odysseus.client.feature.feature.group" version="0.0.0"/>
+<unit id="de.uniol.inf.is.odysseus.client.platform.feature.feature.group" version="0.0.0"/>
+<unit id="de.uniol.inf.is.odysseus.client.studio.feature.feature.group" version="0.0.0"/>
+<unit id="de.uniol.inf.is.odysseus.common.feature.feature.group" version="0.0.0"/>
+<unit id="de.uniol.inf.is.odysseus.datarate.feature.feature.group" version="0.0.0"/>
+<unit id="de.uniol.inf.is.odysseus.datarate_systemload.feature.feature.group" version="0.0.0"/>
+<unit id="de.uniol.inf.is.odysseus.latency.feature.feature.group" version="0.0.0"/>
+<unit id="de.uniol.inf.is.odysseus.planmgmt.standard.feature.feature.group" version="0.0.0"/>
+<unit id="de.uniol.inf.is.odysseus.rcp.dashboard.feature.feature.group" version="0.0.0"/>
+<unit id="de.uniol.inf.is.odysseus.relational.feature.feature.group" version="0.0.0"/>
+<unit id="de.uniol.inf.is.odysseus.script.feature.feature.group" version="0.0.0"/>
+<unit id="de.uniol.inf.is.odysseus.server.feature.feature.group" version="0.0.0"/>
+<unit id="de.uniol.inf.is.odysseus.server.platform.feature.feature.group" version="0.0.0"/>
+<unit id="de.uniol.inf.is.odysseus.systemload.feature.feature.group" version="0.0.0"/>
+<unit id="de.uniol.inf.is.odysseus.usermanagement.store.feature.feature.group" version="0.0.0"/>
+<repository location="https://odysseus.informatik.uni-oldenburg.de/updatesite/origin/development/latest/"/>
 </location>
 </locations>
-<environment>
-<os>win32</os>
-<ws>win32</ws>
-<arch>x86_64</arch>
-<nl>de_DE</nl>
-</environment>
 </target>
