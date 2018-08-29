@@ -1,0 +1,3 @@
+[submodule "odysseus_dev"]
+	path = odysseus_dev
+	url = https://mgrawunder@git.swl.informatik.uni-oldenburg.de/scm/ody/odysseus_dev.git
