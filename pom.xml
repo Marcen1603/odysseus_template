@@ -1,0 +1,26 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.uniol.inf.is.odysseus</groupId>
+	<artifactId>de.uniol.inf.is.odysseus</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<parent>
+		<groupId>de.uniol.inf.is.odysseus.tycho</groupId>
+		<artifactId>de.uniol.inf.is.odysseus.tycho.configuration</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>./odysseus_dev/de.uniol.inf.is.odysseus.tycho.configuration/</relativePath>
+	</parent>
+
+	<modules>
+		<module>resource</module>
+		<module>common</module>
+		<module>server</module>
+		<module>wrapper</module>
+		<module>client</module>
+		<module>monolithic</module>
+		<module>test</module>
+		<module>odysseus_dev</module>
+		<module>releng/de.uniol.inf.is.odysseus.update</module>
+	</modules>	
+</project>
+
