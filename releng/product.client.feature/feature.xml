@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="product.feature"
-      label="Product Feature"
+      id="product.client.feature"
+      label="Product Client Feature"
       version="1.0.0.qualifier">
 
    <description url="http://www.example.com/description">
