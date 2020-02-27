@@ -19,8 +19,25 @@
 		<module>client</module>
 		<module>monolithic</module>
 		<module>test</module>
-		<module>odysseus_dev</module>
-		<module>releng/de.uniol.inf.is.odysseus.update</module>
 	</modules>	
+	
+	<profiles>
+		<profile>
+			<id>solobuild</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>odysseus_dev</module>
+				<module>releng/de.uniol.inf.is.odysseus.update</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>test</id>
+			<modules>
+				<module>test</module>
+			</modules>
+		</profile>
+	</profiles>
 </project>
 
